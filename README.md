@@ -115,6 +115,42 @@ systemctl start zivpn.service
 
 For custom build, business inquiry, reseller system, panel, or telegram bot please contact support.
 
+________________________________________________________________________________________________________________________________________________
+### ROOT
+
+```
+sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/; s/^#\?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#\?PubkeyAuthentication.*/#PubkeyAuthentication yes/' /etc/ssh/sshd_config && (sudo systemctl restart ssh || sudo systemctl restart sshd)
+```
+
+```
+grep -E "PermitRootLogin|PasswordAuthentication|PubkeyAuthentication" /etc/ssh/sshd_config
+```
+________________________________________________________________________________________________________________________________________________
+### root vps bandel bizgo
+2️⃣ Buka authorized_keys root
+```
+nano /root/.ssh/authorized_keys
+```
+3️⃣ CARI baris seperti ini (PENTING)
+```
+command="echo 'Please login as the user udpzip rather than the user root.'"
+```
+4️⃣ PERBAIKI (INI KUNCI SUKSES)
+
+❌ HAPUS HANYA bagian command="..."
+
+masukan key ppk putty contoh:
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ...
+
+agar bisa login root di jus ganti yes
+```
+sudo nano /etc/ssh/sshd_config.d/50-cloud-init.conf
+```
+```
+PasswordAuthentication yes
+```
+
 ---
 
 ### 🎉 Thank you for using **ZiVPN UDP Server**
